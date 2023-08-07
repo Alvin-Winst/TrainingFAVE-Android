@@ -1,4 +1,4 @@
-package com.example.trainingfavemobile;
+package com.example.trainingfavemobile.fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.example.trainingfavemobile.R;
+import com.example.trainingfavemobile.activities.HomeActivity;
 
 /**
  * A simple {@link Fragment} subclass.

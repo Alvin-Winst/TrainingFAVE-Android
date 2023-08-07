@@ -1,15 +1,16 @@
-package com.example.trainingfavemobile;
+package com.example.trainingfavemobile.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.trainingfavemobile.fragments.LoginFragment;
+import com.example.trainingfavemobile.R;
+import com.example.trainingfavemobile.fragments.RegisterFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-import com.google.android.material.tabs.TabLayout;
 
 public class SigninActivity extends AppCompatActivity {
 

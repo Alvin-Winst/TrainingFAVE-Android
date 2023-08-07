@@ -1,13 +1,11 @@
-package com.example.trainingfavemobile;
+package com.example.trainingfavemobile.fragments;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.AlertDialogLayout;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
@@ -20,7 +18,8 @@ import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.example.trainingfavemobile.R;
+import com.example.trainingfavemobile.activities.HomeActivity;
 
 /**
  * A simple {@link Fragment} subclass.

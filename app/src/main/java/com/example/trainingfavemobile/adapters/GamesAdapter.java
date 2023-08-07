@@ -1,4 +1,4 @@
-package com.example.trainingfavemobile;
+package com.example.trainingfavemobile.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.trainingfavemobile.R;
 import com.example.trainingfavemobile.models.GamesResponseItem;
 import com.squareup.picasso.Picasso;
 
