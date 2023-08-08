@@ -11,6 +11,7 @@ import com.example.trainingfavemobile.R;
 import com.example.trainingfavemobile.fragments.RegisterFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.FirebaseApp;
 
 public class SigninActivity extends AppCompatActivity {
 
@@ -18,6 +19,8 @@ public class SigninActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
+
+        FirebaseApp.initializeApp(this);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
 

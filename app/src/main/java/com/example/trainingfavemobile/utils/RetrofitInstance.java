@@ -11,13 +11,8 @@ public class RetrofitInstance {
     private static String BASE_URL = "https://freetogame.com/api/";
 
     public static Retrofit getRetrofitInstance(){
-        OkHttpClient httpClient = new OkHttpClient.Builder()
-                .readTimeout(60, TimeUnit.SECONDS)
-                .connectTimeout(60, TimeUnit.SECONDS)
-                .build();
         if(retrofit == null){
             retrofit = new retrofit2.Retrofit.Builder()
-                    .client(HttpClientService.getUnsafeOkHttpClient())
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
