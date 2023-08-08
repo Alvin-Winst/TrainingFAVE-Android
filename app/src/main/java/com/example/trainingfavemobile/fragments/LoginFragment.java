@@ -38,7 +38,6 @@ import java.util.List;
 public class LoginFragment extends Fragment {
     EditText et_email, et_password;
     Button btn_login;
-    CheckBox cb_remember;
     ProgressBar progressBar;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -57,13 +56,13 @@ public class LoginFragment extends Fragment {
         progressBar = view.findViewById(R.id.progressBar_login);
 
         mAuth = FirebaseAuth.getInstance();
+        mAuth.addAuthStateListener(authStateListener);
 
         sharedPreferences = getContext().getSharedPreferences("user", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         et_email = view.findViewById(R.id.et_emailLogin);
         et_password = view.findViewById(R.id.et_passwordLogin);
         btn_login = view.findViewById(R.id.btn_login);
-        cb_remember = view.findViewById(R.id.cb_remember);
 
         et_email.setText(sharedPreferences.getString("email",""));
         et_password.setText(sharedPreferences.getString("password",""));
@@ -71,15 +70,6 @@ public class LoginFragment extends Fragment {
         editor.apply();
         editor.putString("password", "");
         editor.apply();
-
-        cb_remember.setOnCheckedChangeListener((compoundButton, b) -> {
-            if(b){
-                mAuth.addAuthStateListener(authStateListener);
-            }
-            else{
-                mAuth.removeAuthStateListener(authStateListener);
-            }
-        });
 
         btn_login.setOnClickListener(view1 -> {
             progressBar.setVisibility(View.VISIBLE);

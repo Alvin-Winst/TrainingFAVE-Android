@@ -44,13 +44,6 @@
             android:layout_marginTop="5dp"
             android:inputType="textPassword"/>
 
-        <CheckBox
-            android:id="@+id/cb_remember"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Remember me"
-            android:layout_marginEnd="94dp"/>
-
         <Button
             android:id="@+id/btn_login"
             android:layout_width="wrap_content"
