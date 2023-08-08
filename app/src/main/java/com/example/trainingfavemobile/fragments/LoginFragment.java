@@ -44,7 +44,7 @@ public class LoginFragment extends Fragment {
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener authStateListener = firebaseAuth -> {
         if(firebaseAuth.getCurrentUser() != null){
-            startActivity(new Intent(getContext(), HomeActivity.class));
+            startActivity(new Intent(getActivity(), HomeActivity.class));
         }
     };
 

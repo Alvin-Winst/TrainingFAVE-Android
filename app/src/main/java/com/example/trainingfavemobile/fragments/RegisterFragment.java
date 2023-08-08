@@ -121,7 +121,7 @@ public class RegisterFragment extends Fragment {
                                 editor.putString("password",password);
                                 editor.apply();
                                 progressBar.setVisibility(View.GONE);
-                                startActivity(new Intent(getContext(), SigninActivity.class));
+                                startActivity(new Intent(getActivity(), SigninActivity.class));
                                 getActivity().finish();
                             });
                         })
