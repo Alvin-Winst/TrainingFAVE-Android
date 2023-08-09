@@ -14,10 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainingfavemobile.R;
+import com.example.trainingfavemobile.models.GamesResponse;
 import com.example.trainingfavemobile.models.GamesResponseItem;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -33,7 +33,7 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.viewHolder> 
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_database, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_games, parent, false);
         return new viewHolder(view);
     }
 
@@ -61,6 +61,11 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.viewHolder> 
     @Override
     public int getItemCount() {
         return gamesResponseItemList.size();
+    }
+
+    public void setGamesResponseItemList(List<GamesResponseItem> gamesResponseItemList) {
+        this.gamesResponseItemList = gamesResponseItemList;
+        notifyDataSetChanged();
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {

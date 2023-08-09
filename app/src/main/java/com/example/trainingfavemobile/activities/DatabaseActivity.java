@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainingfavemobile.R;
 import com.example.trainingfavemobile.adapters.GamesAdapter;
+import com.example.trainingfavemobile.models.GamesResponse;
 import com.example.trainingfavemobile.models.GamesResponseItem;
 import com.example.trainingfavemobile.utils.APIInterface;
 import com.example.trainingfavemobile.utils.RetrofitInstance;
@@ -25,7 +26,7 @@ import retrofit2.Response;
 public class DatabaseActivity extends AppCompatActivity {
     RecyclerView rvGames;
     ProgressBar progressBar;
-    List<GamesResponseItem> gamesResponseItemList;
+    List<GamesResponseItem> gamesResponseItemList = new ArrayList<>();
     GamesAdapter gamesAdapter;
 
     @Override
@@ -39,16 +40,16 @@ public class DatabaseActivity extends AppCompatActivity {
         rvGames.setLayoutManager(linearLayoutManager);
         rvGames.setAdapter(gamesAdapter);
 
-        gamesResponseItemList = new ArrayList<>();
         APIInterface apiInterface = RetrofitInstance.getRetrofitInstance().create(APIInterface.class);
-        Call<List<GamesResponseItem>> call = apiInterface.getJSON();
+        Call<List<GamesResponseItem>> call = apiInterface.getGames();
         call.enqueue(new Callback<List<GamesResponseItem>>() {
             @Override
             public void onResponse(Call<List<GamesResponseItem>> call, Response<List<GamesResponseItem>> response) {
                 if (response.isSuccessful()) {
-                    gamesResponseItemList = response.body();
-                    gamesAdapter = new GamesAdapter(gamesResponseItemList, getApplicationContext());
-                    rvGames.setAdapter(gamesAdapter);
+                    List<GamesResponseItem> gamesResponseItem = response.body();
+                    assert gamesResponseItem != null;
+                    gamesResponseItemList.addAll(gamesResponseItem);
+                    gamesAdapter.setGamesResponseItemList(gamesResponseItemList);
                 } else {
                     Toast.makeText(DatabaseActivity.this, "Request Error ::" + response.errorBody(), Toast.LENGTH_SHORT).show();
                 }
