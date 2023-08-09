@@ -95,6 +95,7 @@ public class RegisterFragment extends Fragment {
             String password = et_password.getText().toString();
             String confPass = et_confPassword.getText().toString();
 
+            progressBar.setVisibility(View.GONE);
             if (TextUtils.isEmpty(email) || TextUtils.isEmpty(firstname) || TextUtils.isEmpty(lastname) || TextUtils.isEmpty(gender[0]) || TextUtils.isEmpty(password) || TextUtils.isEmpty((confPass))) {
                 Toast.makeText(getContext(), "Fill in all the required fields!", Toast.LENGTH_LONG).show();
             } else if (!email.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")) {
@@ -109,6 +110,7 @@ public class RegisterFragment extends Fragment {
                         .setTitle("Confirm Registration")
                         .setMessage("Submit?")
                         .setPositiveButton("Submit", (dialog,which) -> {
+                            progressBar.setVisibility(View.VISIBLE);
                             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
                                 if (!task.isSuccessful()) {
                                     Toast.makeText(getContext(), "Register failed", Toast.LENGTH_SHORT).show();
@@ -121,7 +123,7 @@ public class RegisterFragment extends Fragment {
                                 editor.putString("password",password);
                                 editor.apply();
                                 progressBar.setVisibility(View.GONE);
-                                startActivity(new Intent(getActivity(), SigninActivity.class));
+                                startActivity(new Intent(getContext(), SigninActivity.class));
                                 getActivity().finish();
                             });
                         })

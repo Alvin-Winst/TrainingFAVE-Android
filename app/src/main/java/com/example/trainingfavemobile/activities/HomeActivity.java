@@ -26,7 +26,7 @@ public class HomeActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener authStateListener = firebaseAuth -> {
         if(firebaseAuth.getCurrentUser() == null){
-            startActivity(new Intent(HomeActivity.this, SigninActivity.class));
+            startActivity(new Intent(HomeActivity.this, MainActivity.class));
         }
     };
     FirebaseDatabase firebaseDatabase;
@@ -45,11 +45,25 @@ public class HomeActivity extends AppCompatActivity {
         mAuth.addAuthStateListener(authStateListener);
         firebaseUser = mAuth.getCurrentUser();
         userRef = firebaseDatabase.getReference().child("users").child(firebaseUser.getUid());
+        tv_fullName = findViewById(R.id.tv_fullName);
+        btn_showdb = findViewById(R.id.btn_showDatabase);
+        btn_logout = findViewById(R.id.btn_logout);
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 full_name = snapshot.child("full_name").getValue().toString();
+                tv_fullName.setText(full_name);
+
                 gender = snapshot.child("gender").getValue().toString();
+                if(gender.equals("male")){
+                    tv_fullName.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_baseline_face_24,0,0,0);
+                }
+                else if(gender.equals("female")){
+                    tv_fullName.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_baseline_face_3_24,0,0,0);
+                }
+                else{
+                    tv_fullName.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_baseline_android_24,0,0,0);
+                }
             }
 
             @Override
@@ -58,20 +72,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        tv_fullName = findViewById(R.id.tv_fullName);
-        btn_showdb = findViewById(R.id.btn_showDatabase);
-        btn_logout = findViewById(R.id.btn_logout);
-        tv_fullName.setText(full_name);
-
-        if(gender.equals("male")){
-            tv_fullName.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_baseline_face_24,0,0,0);
-        }
-        else if(gender.equals("female")){
-            tv_fullName.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_baseline_face_3_24,0,0,0);
-        }
-        else{
-            tv_fullName.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_baseline_android_24,0,0,0);
-        }
 
         btn_showdb.setOnClickListener(new View.OnClickListener() {
             @Override

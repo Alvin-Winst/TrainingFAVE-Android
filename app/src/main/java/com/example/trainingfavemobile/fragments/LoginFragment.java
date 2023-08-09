@@ -42,12 +42,6 @@ public class LoginFragment extends Fragment {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     FirebaseAuth mAuth;
-    FirebaseAuth.AuthStateListener authStateListener = firebaseAuth -> {
-        if(firebaseAuth.getCurrentUser() != null){
-            startActivity(new Intent(getActivity(), HomeActivity.class));
-        }
-    };
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,7 +50,6 @@ public class LoginFragment extends Fragment {
         progressBar = view.findViewById(R.id.progressBar_login);
 
         mAuth = FirebaseAuth.getInstance();
-        mAuth.addAuthStateListener(authStateListener);
 
         sharedPreferences = getContext().getSharedPreferences("user", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
